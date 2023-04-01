@@ -226,7 +226,7 @@ ndr.3.supply <- ggplot(F1.3.df,
 # scale_y_continuous(breaks = seq(0.5, 2, by=0.25), limits=c(0.5,2))
 ndr.3.supply
 
-
+#
 # Figure 6 Export: this includes ndr1.cerv and ndr3.cerv from the script 
 # 'manuscript_coral_growth_processing.R'
 # png("/output/NDR_panel_plot_highres.png", width = 26, height = 14, units = 'cm', res = 300)
