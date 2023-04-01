@@ -139,6 +139,7 @@ ndr.3.relief <- ggplot(subset(ndr.hotspot, trans.cat == "3"),
   xlab("")
 ndr.3.relief
 
+fix(ndr.hotspot)
 #   b) %N (macroalgal samples) by distance from hotspot 
 ndr.3.percN <- ggplot(subset(ndr.hotspot, trans.cat == "3"),
                       aes(x=factor(dist.cat), 
@@ -234,12 +235,16 @@ ndr.3.supply <- ggplot(F1.3.df,
 # scale_y_continuous(breaks = seq(0.5, 2, by=0.25), limits=c(0.5,2))
 ndr.3.supply
 
-cowplot::plot_grid(ndr.1.relief, ndr.1.supply, ndr.1.percN,
-                   ndr.2.relief, ndr.2.supply, ndr.2.percN,
-                   ndr.3.relief, ndr.3.supply, ndr.3.percN,
+png("FigureX.png", width = 26, height = 14, units = 'cm', res = 300)
+cowplot::plot_grid(ndr.1.relief, ndr.1.supply, ndr.1.percN, ndr1.cerv,
+                   # ndr.2.relief, ndr.2.supply, ndr.2.percN,
+                   ndr.3.relief, ndr.3.supply, ndr.3.percN, ndr3.cerv,
                    align = "v",
-                   ncol=3)
-ggsave("q3.ndr.png")
+                   labels=c("A", "B", "C", "D", "E", "F", "G","H"),
+                   # label_y = 1.03,
+                   ncol=4)
+dev.off()
+# ggsave("q3.ndr.png")
 
 
 # Carysfort: 
@@ -397,8 +402,8 @@ ggsave("ndr.crf.visB.png")
 
 
 
-cowplot::plot_grid( cr.3.relief, cr.3.supply,  cr.3.percN,
-                   # cr.2.relief, cr.2.supply,  cr.2.percN,
+cowplot::plot_grid( # cr.3.relief, cr.3.supply,  cr.3.percN,
+                   cr.2.relief, cr.2.supply,  cr.2.percN,
                    cr.1.relief, cr.1.supply,  cr.1.percN,
                    # ndr.2.relief, ndr.2.supply, ndr.2.percN,
                   
@@ -487,7 +492,7 @@ cr.2.percN <- ggplot(subset(cr.hotspot, trans.cat == "2"),
   # ylim(0.5,2) 
   scale_y_continuous(breaks = seq(0.5, 2, by=0.25), limits=c(0.5,2))
 cr.2.percN
-
+fix(cr.hotspot)
 # 5) T3: relief
 cr.3.relief <- ggplot(subset(cr.hotspot, trans.cat == "3"),
                       aes(x=dist.cat, y=height_diff)) +
@@ -519,3 +524,25 @@ cr.3.percN <- ggplot(subset(cr.hotspot, trans.cat == "3"),
   scale_y_continuous(breaks = seq(0.5, 2, by=0.25), limits=c(0.5,2))
 cr.3.percN
 
+
+cowplot::plot_grid( cr.3.relief, cr.3.supply,  cr.3.percN,
+  # cr.2.relief, cr.2.supply,  cr.2.percN,
+  cr.1.relief, cr.1.supply,  cr.1.percN,
+  # ndr.2.relief, ndr.2.supply, ndr.2.percN,
+  
+  align = "v",
+  labels=c("G", "H", "I", "J", "K", "L"),
+  
+  # label_y = 1.03,
+  ncol=3)
+
+png("CR.png", width = 18, height = 14, units = 'cm', res = 300)
+cowplot::plot_grid( cr.3.relief, cr.3.supply,  cr.3.percN,
+                    cr.2.relief, cr.2.supply,  cr.2.percN,
+                    cr.1.relief, cr.1.supply,  cr.1.percN,
+                   align = "v",
+                   labels=c("A", "B", "C", "E", "F", "G", "H", "I", "J"),
+                   # label_y = 1.03,
+                   ncol=3)
+dev.off()
+# ggsave("q3.ndr.png")
